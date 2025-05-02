@@ -2,12 +2,23 @@
 
 This repository contains a third-party, node for the Node-RED Dashboard to provide an interactive chat window widget.
 
-Easily build a chat-based user interface, and seamlessly integrate it with the vast collection of other Node-RED nodes available.
+Easily build a chat-based user interface, and seamlessly integrate it with the vast collection of other Node-RED nodes available, including many for well-known AI services and offerings like [OpenAI](https://flows.nodered.org/node/@inductiv/node-red-openai-api) or [ollama](https://flows.nodered.org/node/node-red-contrib-ollama).
 
-<img width="1699" alt="Image" src="https://github.com/user-attachments/assets/4edf954b-bb53-4dd4-a353-5b5453d2d8ec" />
+Below is a demonstration of the chat widget in action, integrated with an OpenAI node to provide a chatbot interface, one trained on 
+
+## Examples
+
+### OpenAI Chatbot
+
+Here, an OpenAI agent was prompted that it is an expert in Node-RED, and should assist users with flow-building and answering general questions:
 
 <img width="855" alt="Image" src="https://github.com/user-attachments/assets/c350daf5-a755-4d6b-a48d-310ca3eeb582" />
 
+### Chat & Worldmap Integration
+
+This agent was provisioned to provide coordinate data alongside it's text-based answers, which are then rendered onto a World Map, also rendered within FlowFuse Dashboard.
+
+<img width="1699" alt="Image" src="https://github.com/user-attachments/assets/4edf954b-bb53-4dd4-a353-5b5453d2d8ec" />
 
 ## Usage
 
@@ -28,6 +39,8 @@ npm install @flowfuse/node-red-dashboard-2-ui-chat
 ```
 
 ### Using in a Flow
+
+<img width="964" alt="Image" src="https://github.com/user-attachments/assets/a6597ab4-bfc8-4358-8c2a-8c4b69ecbeda" />
 
 Anything sent into the node will be considered as a _received_ message. Any messages typed into the chat will be sent out of the node as a _sent_ message.
 
