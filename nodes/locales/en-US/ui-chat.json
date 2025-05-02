@@ -1,0 +1,8 @@
+{
+    "ui-chat" : {
+        "label": {
+            "size": "Size",
+            "showAuthor": "Show Author"
+        }
+    }
+}

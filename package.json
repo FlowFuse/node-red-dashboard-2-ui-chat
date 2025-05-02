@@ -1,0 +1,76 @@
+{
+    "name": "@flowfuse/node-red-dashboard-2-ui-chat",
+    "version": "1.0.0",
+    "description": "A FlowFuse Dashboard widget to display a chat interface",
+    "keywords": [
+        "node-red",
+        "node-red-dashboard-2"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/flowfuse/node-red-dashboard-2-ui-chat.git"
+    },
+    "homepage": "https://github.com/flowfuse/node-red-dashboard-2-ui-chat",
+    "bugs": {
+        "url": "https://github.com/flowfuse/node-red-dashboard-2-ui-chat/issues"
+    },
+    "license": "Apache-2.0",
+    "author": {
+        "name": "FlowFuse Inc.",
+        "url": "https://flowfuse.com"
+    },
+    "contributors": [],
+    "exports": {
+        "import": "./resources/ui-chat.esm.js",
+        "require": "./resources/ui-chat.umd.js"
+    },
+    "files": [
+        "dist/*",
+        "nodes/*",
+        "ui/*",
+        "resources/*"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "build:dev": "NODE_ENV=development vite build",
+        "dev": "NODE_ENV=development vite build --watch",
+        "dev:prod": "vite build --watch",
+        "lint": "npm run lint:js",
+        "lint:fix": "npm run lint:js:fix",
+        "lint:js": "eslint --ext .js,.vue,.cjs,.mjs .",
+        "lint:js:fix": "yarn lint:js --fix"
+    },
+    "dependencies": {
+        "to-title-case": "^1.0.0",
+        "vue": "^3.3.8",
+        "vuex": "^4.1.0"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^4.5.0",
+        "eslint": "^8.53.0",
+        "eslint-config-standard": "^17.1.0",
+        "eslint-plugin-import": "^2.29.0",
+        "eslint-plugin-n": "^16.3.1",
+        "eslint-plugin-vue": "^9.18.1",
+        "vite": "^5.0.13",
+        "vite-plugin-css-injected-by-js": "^3.3.0"
+    },
+    "engines": {
+        "node": ">=16.x"
+    },
+    "node-red": {
+        "version": ">=3.0.0",
+        "nodes": {
+            "ui-chat": "nodes/ui-chat.js"
+        }
+    },
+    "node-red-dashboard-2": {
+        "version": "1.0.0",
+        "widgets": {
+            "ui-chat": {
+                "output": "ui-chat.umd.js",
+                "component": "UIChat"
+            }
+        }
+    }
+}
