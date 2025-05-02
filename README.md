@@ -12,13 +12,13 @@ Below is a demonstration of the chat widget in action, integrated with an OpenAI
 
 Here, an OpenAI agent was prompted that it is an expert in Node-RED, and should assist users with flow-building and answering general questions:
 
-<img width="855" alt="Image" src="https://github.com/user-attachments/assets/c350daf5-a755-4d6b-a48d-310ca3eeb582" />
+<img style="max-width:600px; margin: auto;" alt="Screenshot of a FlowFuse Dashboard built to enable interaction with an LLM Agent that can answer questions about Node-RED" src="./docs/screenshot-open-ai.png" />
 
 ### Chat & Worldmap Integration
 
 This agent was provisioned to provide coordinate data alongside it's text-based answers, which are then rendered onto a World Map, also rendered within FlowFuse Dashboard.
 
-<img width="1699" alt="Image" src="https://github.com/user-attachments/assets/4edf954b-bb53-4dd4-a353-5b5453d2d8ec" />
+<img alt="Screenshot of a FlowFuse Dashboard built to enable interaction with an LLM Agent that can answer questions and provide coordinate data, which is then rendered on a World Map" src="./docs/screenshot-worldmap.png" />
 
 ## Usage
 
