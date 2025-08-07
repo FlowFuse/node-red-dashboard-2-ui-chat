@@ -48,6 +48,8 @@
 
 <script>
 
+import DOMPurify from 'dompurify'
+
 import { marked } from 'marked'
 
 import AirplaneIcon from './icons/AirplaneIcon.vue'
@@ -92,7 +94,8 @@ export default {
         renderMarkdown (text) {
             try {
                 // Parse markdown and return HTML
-                return marked.parse(text)
+                const html = marked.parse(text)
+                return DOMPurify.sanitize(html)
             } catch (error) {
                 console.error('Error parsing markdown:', error)
                 // Fallback to plain text if markdown parsing fails
