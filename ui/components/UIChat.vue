@@ -11,9 +11,7 @@
                 <div v-if="props.showAuthor && !message.sent" class="nrdb-ui-message-author">
                     {{ message.author }}
                 </div>
-                <div class="nrdb-ui-message-content">
-                    {{ message.text }}
-                </div>
+                <div class="nrdb-ui-message-content" v-html="renderMarkdown(message.text)"/>
                 <div class="nrdb-ui-message-time">
                     {{ message.time }}
                 </div>
@@ -50,6 +48,10 @@
 
 <script>
 
+import DOMPurify from 'dompurify'
+
+import { marked } from 'marked'
+
 import AirplaneIcon from './icons/AirplaneIcon.vue'
 
 export default {
@@ -65,7 +67,14 @@ export default {
         state: { type: Object, default: () => ({ enabled: false, visible: false }) }
     },
     setup (props) {
-
+        // Configure marked options
+        marked.setOptions({
+            breaks: true, // Convert line breaks to <br>
+            gfm: true, // Enable GitHub Flavored Markdown
+            sanitize: true, // Don't HTML (be careful with user input)
+            smartLists: true,
+            smartypants: true
+        })
     },
     data () {
         return {
@@ -82,6 +91,23 @@ export default {
         this.$dataTracker(this.id, this.onInput, this.onLoad)
     },
     methods: {
+        renderMarkdown (text) {
+            try {
+                // Parse markdown and return HTML
+                const html = marked.parse(text)
+                return DOMPurify.sanitize(html)
+            } catch (error) {
+                console.error('Error parsing markdown:', error)
+                // Fallback to plain text if markdown parsing fails
+                return this.escapeHtml(text)
+            }
+        },
+        escapeHtml (text) {
+            // Basic HTML escaping for fallback
+            const div = document.createElement('div')
+            div.textContent = text
+            return div.innerHTML
+        },
         onInput (msg) {
             if (msg.topic === '_typing') {
                 this.typing = true
@@ -155,4 +181,68 @@ export default {
 <style scoped>
 /* CSS is auto scoped, but using named classes is still recommended */
 @import "../stylesheets/ui-chat.css";
+
+/* Additional styles for markdown content */
+.nrdb-ui-message-content :deep(p) {
+    margin: 0.5em 0;
+}
+
+.nrdb-ui-message-content :deep(p:first-child) {
+    margin-top: 0;
+}
+
+.nrdb-ui-message-content :deep(p:last-child) {
+    margin-bottom: 0;
+}
+
+.nrdb-ui-message-content :deep(code) {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+.nrdb-ui-message-content :deep(pre) {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+.nrdb-ui-message-content :deep(blockquote) {
+    border-left: 4px solid #ddd;
+    margin: 0.5em 0;
+    padding-left: 1em;
+    color: #666;
+}
+
+.nrdb-ui-message-content :deep(ul),
+.nrdb-ui-message-content :deep(ol) {
+    margin: 0.5em 0;
+    padding-left: 1.5em;
+}
+
+.nrdb-ui-message-content :deep(strong) {
+    font-weight: bold;
+}
+
+.nrdb-ui-message-content :deep(em) {
+    font-style: italic;
+}
+
+.nrdb-ui-message-content :deep(a) {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.nrdb-ui-message-content :deep(h1),
+.nrdb-ui-message-content :deep(h2),
+.nrdb-ui-message-content :deep(h3),
+.nrdb-ui-message-content :deep(h4),
+.nrdb-ui-message-content :deep(h5),
+.nrdb-ui-message-content :deep(h6) {
+    margin: 0.5em 0;
+    font-weight: bold;
+}
 </style>
