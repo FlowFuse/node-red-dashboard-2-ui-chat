@@ -52,10 +52,65 @@ You can create placeholder items in your chat, like a "Typing" message by using 
 
 By assigning a `msg.topic` of `_typing`, then a placeholder "Typing..." message will be shown in the chat. This is automatically removed when the next message is received.
 
-
 ##### Defining Message Authors
 
 Any other `msg.topic` values used are assumed to be the name of the "author" of the message.
+
+#### Message Formats
+
+The chat widget supports both single messages and arrays of messages, providing flexibility for various use cases.
+
+##### Single Message (Basic Usage)
+
+```javascript
+msg.payload = "Hello, this is a simple message";
+msg.topic = "user";  // Optional: sets the author name
+```
+
+##### Array of Messages
+
+You can send multiple messages at once by providing an array in `msg.payload`:
+
+```javascript
+// Array of simple strings
+msg.payload = [
+    "Hello!",
+    "How are you?",
+    "This is a test message."
+];
+msg.topic = "user";  // Author applied to all messages
+```
+
+##### Advanced Message Objects
+
+For more control, use message objects with custom parameters:
+
+```javascript
+msg.payload = [
+    {
+        text: "Message with custom time",
+        time: "10:30:15",
+        author: "Bot",
+        sent: false
+    },
+    {
+        text: "User message with timestamp",
+        timestamp: Date.now(),  // Will be converted to time string
+        sent: true
+    },
+    "Simple string message"  // Can mix strings and objects
+];
+```
+
+##### Message Object Properties
+
+- **`text`** (string): The message content (required)
+- **`time`** (string): Custom time display (e.g., "10:30:15")
+- **`timestamp`** (number): Unix timestamp (will be converted to time string)
+- **`author`** (string): Message author name (overrides `msg.topic`)
+- **`sent`** (boolean): Whether message appears as sent (true) or received (false)
+
+**Note**: If both `time` and `timestamp` are provided, `time` takes precedence.
 
 ## Development
 
