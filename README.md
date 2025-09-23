@@ -40,6 +40,8 @@ npm install @flowfuse/node-red-dashboard-2-ui-chat
 
 ### Using in a Flow
 
+<img width="964" alt="Image" src="https://github.com/user-attachments/assets/a6597ab4-bfc8-4358-8c2a-8c4b69ecbeda" />
+
 Anything sent into the node will be considered as a _received_ message. Any messages typed into the chat will be sent out of the node as a _sent_ message.
 
 #### Predefined Input Types
