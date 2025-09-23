@@ -112,6 +112,83 @@ msg.payload = [
 
 **Note**: If both `time` and `timestamp` are provided, `time` takes precedence.
 
+#### Node-RED Inject Node Examples
+
+Here are practical examples of how to configure Node-RED inject nodes to send message arrays to the chat widget:
+
+##### Example 1: Simple String Array Inject
+
+Configure an inject node with the following settings:
+- **Topic**: `system`
+- **Payload**: JSON format
+```json
+[
+    "Welcome to the chat!",
+    "Here are your daily updates:",
+    "- Order #1234 has shipped",
+    "- New message from support team"
+]
+```
+
+##### Example 2: Advanced Message Objects Inject
+
+Configure an inject node with the following settings:
+- **Topic**: `bot`  
+- **Payload**: JSON format
+```json
+[
+    {
+        "text": "Good morning! Here's your schedule:",
+        "time": "09:00:00",
+        "author": "Assistant",
+        "sent": false
+    },
+    {
+        "text": "Meeting with team at 10 AM",
+        "time": "09:00:01",
+        "author": "Calendar",
+        "sent": false
+    },
+    {
+        "text": "Lunch break at 12 PM",
+        "time": "09:00:02", 
+        "author": "Calendar",
+        "sent": false
+    }
+]
+```
+
+##### Example 3: Mixed Format Conversation Replay
+
+For replaying a conversation with mixed sent/received messages:
+- **Topic**: `replay`
+- **Payload**: JSON format
+```json
+[
+    {
+        "text": "Hello, I need help with my order",
+        "time": "14:30:15",
+        "author": "Customer",
+        "sent": true
+    },
+    "I'll be happy to help you with that!",
+    {
+        "text": "Can you provide your order number?",
+        "time": "14:30:45",
+        "author": "Support",
+        "sent": false
+    },
+    {
+        "text": "Sure, it's #ORD-12345",
+        "time": "14:31:20",
+        "author": "Customer", 
+        "sent": true
+    }
+]
+```
+
+These inject nodes can be connected directly to your chat widget node to demonstrate the array message functionality.
+
 ## Development
 
 To get started, clone this repository:
