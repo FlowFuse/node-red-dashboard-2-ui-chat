@@ -57,6 +57,30 @@ By assigning a `msg.topic` of `_typing`, then a placeholder "Typing..." message 
 
 Any other `msg.topic` values used are assumed to be the name of the "author" of the message.
 
+#### Load Message History
+
+When the chat widget first loads, you can populate it with historical messages by storing them in the widget's datastore. This is useful for:
+- Restoring previous conversations when a user returns to the dashboard
+- Preloading context or example messages
+- Displaying conversation history from a database or file
+
+To load message history, store an array of message objects in the widget's data store. Each message object should have the following properties:
+
+```javascript
+{
+    "author": "Assistant",      // The name of the message author
+    "text": "Hello! How can I help?",  // The message text (supports Markdown)
+    "timestamp": 1234567890000, // Unix timestamp in milliseconds
+    "sent": false               // true for user messages (right-aligned), false for received (left-aligned)
+}
+```
+
+**Notes:**
+- The `timestamp` field is required for proper message ordering and will be converted to a localized time string for display
+- Messages are displayed in the order they appear in the array
+- The chat will automatically scroll to the bottom after loading history
+- Loading history replaces any existing messages in the chat
+
 ## Development
 
 To get started, clone this repository:
