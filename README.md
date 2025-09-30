@@ -75,45 +75,7 @@ To load message history, store an array of message objects in the widget's data 
 }
 ```
 
-**Example Flow:**
-
-Here's a complete example that loads historical messages when the dashboard first loads:
-
-```javascript
-[
-    {
-        "id": "load-history",
-        "type": "inject",
-        "name": "Load on Start",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "[{\"author\":\"Assistant\",\"text\":\"Welcome back! How can I help you today?\",\"timestamp\":1234567890000,\"sent\":false},{\"author\":\"user\",\"text\":\"What can you do?\",\"timestamp\":1234567891000,\"sent\":true},{\"author\":\"Assistant\",\"text\":\"I can help answer questions and provide information.\",\"timestamp\":1234567892000,\"sent\":false}]",
-        "payloadType": "json",
-        "x": 130,
-        "y": 100,
-        "wires": [["chat-widget"]]
-    },
-    {
-        "id": "chat-widget",
-        "type": "ui-chat",
-        "name": "Chat",
-        "group": "group-id",
-        "x": 350,
-        "y": 100,
-        "wires": [[]]
-    }
-]
-```
-
-You can also load messages from a database, file, or context:
+You can load messages from a database, file, or context:
 
 ```javascript
 // Function node to load from context
