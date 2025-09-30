@@ -75,14 +75,6 @@ To load message history, store an array of message objects in the widget's data 
 }
 ```
 
-You can load messages from a database, file, or context:
-
-```javascript
-// Function node to load from context
-msg.payload = flow.get('chatHistory') || [];
-return msg;
-```
-
 **Notes:**
 - The `timestamp` field is required for proper message ordering and will be converted to a localized time string for display
 - Messages are displayed in the order they appear in the array
