@@ -128,10 +128,10 @@ export default {
                                 sent: false
                             }
                         } else {
-                            // Handle object format with optional time and sent parameters
+                            // Handle object format with text field only
                             return {
                                 author: messageData.author || msg.topic || 'system',
-                                text: messageData.text || messageData.payload || messageData.message || '',
+                                text: messageData.text || '',
                                 time: messageData.time || (messageData.timestamp ? new Date(messageData.timestamp).toLocaleTimeString() : new Date().toLocaleTimeString()),
                                 sent: messageData.sent !== undefined ? messageData.sent : false
                             }
@@ -139,10 +139,10 @@ export default {
                     })
                     this.messages.push(...newMessages)
                 } else {
-                    // Handle single message (existing behavior)
+                    // Handle single message using text field
                     this.messages.push({
                         author: msg.topic,
-                        text: msg.payload,
+                        text: msg.payload.text || '',
                         time: msg.time || (msg.timestamp ? new Date(msg.timestamp).toLocaleTimeString() : new Date().toLocaleTimeString()),
                         sent: msg.sent !== undefined ? msg.sent : false
                     })
