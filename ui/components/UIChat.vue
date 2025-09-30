@@ -139,10 +139,10 @@ export default {
                     })
                     this.messages.push(...newMessages)
                 } else {
-                    // Handle single message using text field
+                    // Handle single message (existing behavior)
                     this.messages.push({
                         author: msg.topic,
-                        text: msg.payload.text || '',
+                        text: msg.payload,
                         time: msg.time || (msg.timestamp ? new Date(msg.timestamp).toLocaleTimeString() : new Date().toLocaleTimeString()),
                         sent: msg.sent !== undefined ? msg.sent : false
                     })
