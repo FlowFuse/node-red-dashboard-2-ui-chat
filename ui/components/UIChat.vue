@@ -128,10 +128,10 @@ export default {
                                 sent: false
                             }
                         } else {
-                            // Handle object format with optional time and sent parameters
+                            // Handle object format with text field only
                             return {
                                 author: messageData.author || msg.topic || 'system',
-                                text: messageData.text || messageData.payload || messageData.message || '',
+                                text: messageData.text || '',
                                 time: messageData.time || (messageData.timestamp ? new Date(messageData.timestamp).toLocaleTimeString() : new Date().toLocaleTimeString()),
                                 sent: messageData.sent !== undefined ? messageData.sent : false
                             }
