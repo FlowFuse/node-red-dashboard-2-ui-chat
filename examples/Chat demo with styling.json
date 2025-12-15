@@ -1,0 +1,415 @@
+[
+    {
+        "id": "1d3f1400cbf0fb23",
+        "type": "ui-template",
+        "z": "6d7f21a00014d7f8",
+        "g": "9901f8f28419f0b6",
+        "group": "",
+        "page": "",
+        "ui": "243c6cd627bbbd46",
+        "name": "my-bubble-colors",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "div.my-bubble-colors {\n    --v-theme-primary: 255, 0, 0;\n}\n\ndiv.my-bubble-colors.nrdb-ui-chat {\n    --v-theme-background: 40, 45, 50 ;\n    --v-theme-on-group-background: 173, 216, 230;\n    --group-border-radius: 22px\n}\n\ndiv.my-bubble-colors .nrdb-ui-message.sent {\n    --v-theme-primary: 0, 255, 255;\n    --v-theme-on-primary: 51, 51, 51;\n}\n\ndiv.my-bubble-colors .nrdb-ui-message.received {\n    --v-theme-primary: 51, 51, 51;\n    --v-theme-on-primary: 0, 255, 255;\n}\n\ndiv.my-bubble-colors .nrdb-ui-message.received .nrdb-ui-message-typing {\n    --v-theme-on-primary: 249, 197, 197; /* pink dots */\n}\n\ndiv.my-bubble-colors .nrdb-ui-chat-messages {\n  /* For Firefox */\n  scrollbar-color: rgb(0, 0, 0) rgba(0, 0, 0, 0); /* thumb color | track color */\n  scrollbar-width: thin; /* auto, thin, none */\n}\n\n/* For Webkit browsers (Chrome, Safari, Edge) */\ndiv.my-bubble-colors .nrdb-ui-chat-messages::-webkit-scrollbar {\n  width: 10px; /* width of the entire scrollbar */\n}\n\ndiv.my-bubble-colors .nrdb-ui-chat-messages::-webkit-scrollbar-track {\n  background: rgba(0, 0, 0, 0); /* color of the tracking area */\n}\n\ndiv.my-bubble-colors .nrdb-ui-chat-messages::-webkit-scrollbar-thumb {\n  background-color: rgb(0, 0, 0); /* color of the scroll thumb */\n  border-radius: 20px; /* roundness of the scroll thumb */\n  border: 3px solid rgba(0, 0, 0, 0); /* creates padding around scroll thumb */\n}",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "site:style",
+        "className": "",
+        "x": 170,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "15f6aefd09dc3f35",
+        "type": "inject",
+        "z": "6d7f21a00014d7f8",
+        "g": "9901f8f28419f0b6",
+        "name": "my-bubble-colors",
+        "props": [
+            {
+                "p": "class",
+                "v": "my-bubble-colors",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "5bc14ee26e0abed0"
+            ]
+        ]
+    },
+    {
+        "id": "dcc8a99e88381bb0",
+        "type": "inject",
+        "z": "6d7f21a00014d7f8",
+        "g": "9901f8f28419f0b6",
+        "name": "default class",
+        "props": [
+            {
+                "p": "class",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "5bc14ee26e0abed0"
+            ]
+        ]
+    },
+    {
+        "id": "5bc14ee26e0abed0",
+        "type": "junction",
+        "z": "6d7f21a00014d7f8",
+        "g": "9901f8f28419f0b6",
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "adfa29919d3f5cb3"
+            ]
+        ]
+    },
+    {
+        "id": "d305317051db82a0",
+        "type": "group",
+        "z": "6d7f21a00014d7f8",
+        "name": "Hardcoded Responses",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "adfa29919d3f5cb3",
+            "cb2615837e4f7c34",
+            "ba37a5471fb218a1",
+            "991a4abae153fd3d",
+            "d3cd86c8bfb984b0",
+            "6e3395202a30906f",
+            "98c1dbd11b9c08b4",
+            "12776640bb5ee3a0"
+        ],
+        "x": 54,
+        "y": 39,
+        "w": 982,
+        "h": 162
+    },
+    {
+        "id": "adfa29919d3f5cb3",
+        "type": "ui-chat",
+        "z": "6d7f21a00014d7f8",
+        "g": "d305317051db82a0",
+        "name": "Harcoded Response",
+        "group": "21141d928559788f",
+        "order": 1,
+        "width": "6",
+        "height": "10",
+        "showAuthor": true,
+        "className": "",
+        "inputPlaceholder": "",
+        "x": 460,
+        "y": 120,
+        "wires": [
+            [
+                "d3cd86c8bfb984b0",
+                "991a4abae153fd3d"
+            ]
+        ]
+    },
+    {
+        "id": "cb2615837e4f7c34",
+        "type": "inject",
+        "z": "6d7f21a00014d7f8",
+        "g": "d305317051db82a0",
+        "name": "Set \"Typing...\" Status",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "_typing",
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "adfa29919d3f5cb3"
+            ]
+        ]
+    },
+    {
+        "id": "ba37a5471fb218a1",
+        "type": "inject",
+        "z": "6d7f21a00014d7f8",
+        "g": "d305317051db82a0",
+        "name": "Send Message",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Via Inject Node",
+        "payload": "Hello World!",
+        "payloadType": "str",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "adfa29919d3f5cb3"
+            ]
+        ]
+    },
+    {
+        "id": "991a4abae153fd3d",
+        "type": "delay",
+        "z": "6d7f21a00014d7f8",
+        "g": "d305317051db82a0",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 140,
+        "wires": [
+            [
+                "12776640bb5ee3a0"
+            ]
+        ]
+    },
+    {
+        "id": "d3cd86c8bfb984b0",
+        "type": "change",
+        "z": "6d7f21a00014d7f8",
+        "g": "d305317051db82a0",
+        "name": "Send \"Typing...\" command",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "_typing",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 100,
+        "wires": [
+            [
+                "6e3395202a30906f"
+            ]
+        ]
+    },
+    {
+        "id": "6e3395202a30906f",
+        "type": "link out",
+        "z": "6d7f21a00014d7f8",
+        "g": "d305317051db82a0",
+        "name": "link out 9",
+        "mode": "link",
+        "links": [
+            "98c1dbd11b9c08b4"
+        ],
+        "x": 995,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "98c1dbd11b9c08b4",
+        "type": "link in",
+        "z": "6d7f21a00014d7f8",
+        "g": "d305317051db82a0",
+        "name": "link in 5",
+        "links": [
+            "6e3395202a30906f"
+        ],
+        "x": 245,
+        "y": 160,
+        "wires": [
+            [
+                "adfa29919d3f5cb3"
+            ]
+        ]
+    },
+    {
+        "id": "12776640bb5ee3a0",
+        "type": "change",
+        "z": "6d7f21a00014d7f8",
+        "g": "d305317051db82a0",
+        "name": "Send \"Hi!\"",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Hi!",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Hardcoded Response",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 140,
+        "wires": [
+            [
+                "6e3395202a30906f"
+            ]
+        ]
+    },
+    {
+        "id": "21141d928559788f",
+        "type": "ui-group",
+        "name": "Harcoded Responses",
+        "page": "6d04aacbb1427a2c",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "6d04aacbb1427a2c",
+        "type": "ui-page",
+        "name": "Chat Examples",
+        "ui": "243c6cd627bbbd46",
+        "path": "/chat",
+        "icon": "message",
+        "layout": "grid",
+        "theme": "afa24cae12543ca5",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 4,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "afa24cae12543ca5",
+        "type": "ui-theme",
+        "name": "Chat Theme Dark",
+        "colors": {
+            "surface": "#1f2937",
+            "primary": "#0094ce",
+            "bgPage": "#212121",
+            "groupBg": "#202020",
+            "groupOutline": "#c7c7c7"
+        },
+        "sizes": {
+            "groupGap": "12px",
+            "widgetGap": "12px",
+            "pagePadding": "12px",
+            "groupBorderRadius": "4px",
+            "density": "default"
+        }
+    },
+    {
+        "id": "243c6cd627bbbd46",
+        "type": "ui-base",
+        "name": "node-red test dash",
+        "path": "/dashboard",
+        "appIcon": "https://cdn.quasar.dev/logo-v2/favicon/favicon.ico",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": true,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "770b5e0118b32576",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@flowfuse/node-red-dashboard": "1.30.0",
+            "@flowfuse/node-red-dashboard-2-ui-chat": "1.2.1"
+        }
+    }
+]
