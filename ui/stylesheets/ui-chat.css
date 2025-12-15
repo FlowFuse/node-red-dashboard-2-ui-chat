@@ -1,12 +1,9 @@
-.nrdb-ui-chat {
+.nrdb-ui-chat-container {
     display: flex;
     flex-direction: column;
-    /* min-height: 100%;
-    height: 0; */
-    background: var(--surface);
-    border-radius: var(--group-border-radius);
-    overflow: hidden;
     background-color: rgb(var(--v-theme-background));
+    overflow: hidden;
+    border-radius: var(--group-border-radius);
 }
 
 .nrdb-ui-chat-messages {
@@ -16,7 +13,6 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    background-color: rgb(var(--v-theme-background));
 }
 
 .nrdb-ui-message {
@@ -29,17 +25,18 @@
 
 .nrdb-ui-message.received {
     align-self: flex-start;
-    background-color: white;
+    background-color: rgb(var(--v-theme-primary));
+    color: rgb(var(--v-theme-on-primary, 255, 255, 255)); /* Use a contrasting color variable */
     border-bottom-left-radius: 4px;
-    box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: -2px 2px 2px 0 rgba(var(--v-theme-primary), 0.3);
 }
 
 .nrdb-ui-message.sent {
     align-self: flex-end;
     background-color: rgb(var(--v-theme-primary));
-    color: white;
+    color: rgb(var(--v-theme-on-primary, 255, 255, 255)); /* Use a contrasting color variable */
     border-bottom-right-radius: 4px;
-    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 2px 0 rgba(var(--v-theme-primary), 0.3);
 }
 
 .nrdb-ui-message-author {
@@ -58,22 +55,18 @@
     text-align: right;
 }
 
-/* .nrdb-ui-chat-input {
-    padding: 12px;
-    background: var(--surface);
-    border-top: 1px solid var(--groupOutline, #cccccc);
-} */
-
-/* New container for the input and button */
+/* container for the input and button */
 .nrdb-ui-chat-input {
     position: relative;
     display: flex;
     align-items: center;
-    background: white;
+    background: transparent;
+    color: rgb(var(--v-theme-on-group-background));
     border-radius: 24px;
     border: 1px solid var(--groupOutline, #cccccc);
     margin: 12px;
 }
+
 .nrdb-ui-chat-input .nrdb-ui-chat-input-container {
     display: flex;
     align-items: center;
@@ -88,20 +81,20 @@
     border: none;
     border-radius: 24px;
     outline: none;
-    background: white;
+    color: rgb(var(--v-theme-on-group-background));
     font-size: 14px;
 }
 
 .nrdb-ui-chat-input input:focus {
-    box-shadow: 0 0 0 2px var(--primary, #0094CE);
+    box-shadow: 0 0 0 2px rgba(var(--v-theme-primary), 0.3);
 }
 
 .nrdb-ui-chat-input button {
     position: absolute;
     right: 8px;
     padding: 8px;
-    background: var(--primary, #0094CE);
-    color: white;
+    background-color: rgb(var(--v-theme-primary, 0, 148, 206));
+    color: rgb(var(--v-theme-on-primary, 255, 255, 255));
     border: none;
     border-radius: 50%;
     width: 32px;
@@ -152,7 +145,7 @@
 .nrdb-ui-message-typing-dot {
     width: 6px;
     height: 6px;
-    background: rgb(var(--v-theme-primary));
+    background: rgb(var(--v-theme-on-primary));
     border-radius: 50%;
     opacity: 0.6;
     animation: typingBounce 1.4s infinite;

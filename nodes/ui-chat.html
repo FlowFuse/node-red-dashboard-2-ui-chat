@@ -19,6 +19,8 @@
             },
             height: { value: 0 },
             showAuthor: { value: false },
+            className: { value: '' },
+            inputPlaceholder: { value: 'Type a message...' }
         },
         inputs: 1,
         outputs: 1,
@@ -33,6 +35,10 @@
                 height: '#node-input-height',
                 group: '#node-input-group'
             });
+            // in-place upgrade of already deployed nodes
+            if (this.inputPlaceholder === undefined) {
+                $('#node-input-inputPlaceholder').val(this._('ui-chat.default.inputPlaceholder'));
+            }
         }
     });
 </script>
@@ -52,9 +58,17 @@
         <input type="hidden" id="node-input-height">
         <button class="editor-button" id="node-input-size"></button>
     </div>
+    <div class="form-row" id="text-row-class">
+        <label for="node-input-className"><i class="fa fa-code"></i> <span data-i18n="ui-chat.label.class"></span></label>
+        <input type="text" id="node-input-className" data-i18n="[placeholder]ui-chat.label.classNamePlaceholder"/>
+    </div>
     <h4>Chat Appearance</h4>
     <div class="form-row">
-        <label for="node-input-showAuthor" style="width:auto"><i class="fa fa-user"></i> <span data-i18n="ui-chat.label.showAuthor"></span></label>
-        <input type="checkbox" id="node-input-showAuthor" style="display:inline-block; width:auto; vertical-align:top; margin-left: 12px;">
+        <label for="node-input-showAuthor"><i class="fa fa-user"></i> <span data-i18n="ui-chat.label.showAuthor"></span></label>
+        <input type="checkbox" id="node-input-showAuthor" style="display:inline-block; width:auto; vertical-align:top;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-inputPlaceholder"><i class="fa fa-user"></i> <span data-i18n="ui-chat.label.inputPlaceholder"></span></label>
+        <input type="text" id="node-input-inputPlaceholder">
     </div>
 </script>

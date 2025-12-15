@@ -1,5 +1,5 @@
 <template>
-    <div class="nrdb-ui-chat">
+    <div class="nrdb-ui-chat-container" :class="className">
         <!-- Chat messages container -->
         <div class="nrdb-ui-chat-messages">
             <div
@@ -31,7 +31,7 @@
                 <input
                     v-model="newMessage"
                     type="text"
-                    placeholder="Type a message..."
+                    :placeholder="props.inputPlaceholder === undefined ? 'Type a message...' : props.inputPlaceholder"
                     :disabled="!state.enabled"
                     @keyup.enter="sendMessage"
                 >
