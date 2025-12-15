@@ -26,6 +26,7 @@
     },
     "files": [
         "dist/*",
+        "examples/*",
         "nodes/*",
         "ui/*",
         "resources/*"
