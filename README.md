@@ -69,8 +69,33 @@ git clone https://github.com/FlowFuse/node-red-dashboard-2-ui-chat.git
 git clone git@github.com:FlowFuse/node-red-dashboard-2-ui-chat.git
 ```
 
-Then, you can install it's dependencies with:
+Install dependencies:
 
 ```bash
 npm install
 ```
+
+Install the node to your Node-RED instance for development:
+
+```bash
+# Change directory to your Node-RED user directory - typically ~/.node-red or c:\Users\<username>\.node-red
+cd ~/.node-red
+# Install the cloned node package - using the path to where you cloned the repo
+npm install /path/to/cloned/repo/node-red-dashboard-2-ui-chat
+```
+
+During development, you can use the following command to build the frontend code:
+
+```bash
+npm run build:dev
+```
+
+For production builds, use:
+
+```bash
+npm run build
+```
+
+After running a build for front-end changes, you can simply refresh the Node-RED Dashboard to see your changes.
+
+If changes to the Node-RED backend code or the nodes HTML, then you will need to restart Node-RED itself
