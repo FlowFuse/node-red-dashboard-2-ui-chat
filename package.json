@@ -1,6 +1,6 @@
 {
     "name": "@flowfuse/node-red-dashboard-2-ui-chat",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "description": "A FlowFuse Dashboard widget to display a chat interface",
     "keywords": [
         "node-red",
@@ -41,21 +41,21 @@
         "lint:js:fix": "yarn lint:js --fix"
     },
     "dependencies": {
-        "dompurify": "^3.0.2",
-        "marked": "^16.1.2",
+        "dompurify": "^3.3.1",
+        "marked": "^17.0.1",
         "to-title-case": "^1.0.0",
-        "vue": "^3.3.8",
+        "vue": "^3.5.25",
         "vuex": "^4.1.0"
     },
     "devDependencies": {
-        "@vitejs/plugin-vue": "^5.2.3",
+        "@vitejs/plugin-vue": "^5.2.4",
         "eslint": "^8.53.0",
         "eslint-config-standard": "^17.1.0",
         "eslint-plugin-import": "^2.29.0",
         "eslint-plugin-n": "^16.3.1",
         "eslint-plugin-vue": "^9.18.1",
-        "vite": "^6.3.4",
-        "vite-plugin-css-injected-by-js": "^3.3.0"
+        "vite": "^6.4.1",
+        "vite-plugin-css-injected-by-js": "^3.5.2"
     },
     "engines": {
         "node": ">=16.x"
@@ -74,5 +74,8 @@
                 "component": "UIChat"
             }
         }
+    },
+    "overrides": {
+        "brace-expansion": ">1.1.11"
     }
 }
