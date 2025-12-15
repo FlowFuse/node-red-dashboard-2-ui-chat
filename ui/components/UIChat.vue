@@ -31,7 +31,7 @@
                 <input
                     v-model="newMessage"
                     type="text"
-                    placeholder="Type a message..."
+                    :placeholder="props.inputPlaceholder === undefined ? 'Type a message...' : props.inputPlaceholder"
                     :disabled="!state.enabled"
                     @keyup.enter="sendMessage"
                 >
