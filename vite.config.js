@@ -9,32 +9,34 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 const LIBRARY_NAME = 'ui-chat'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-    plugins: [vue(), cssInjectedByJsPlugin()],
-    build: {
-        // Generate a source map in dev mode
-        sourcemap: process.env.NODE_ENV === 'development',
+export default defineConfig(({ mode }) => {
+    return {
+        plugins: [vue(), cssInjectedByJsPlugin()],
+        build: {
+            // Generate a source map in dev mode
+            sourcemap: mode === 'development',
 
-        // Configure build as a UMD library
-        lib: {
-            entry: resolve(__dirname, 'ui/index.js'),
-            name: LIBRARY_NAME,
-            formats: ['umd'],
-            fileName: (format, entryName) => `${LIBRARY_NAME}.${format}.js`
-        },
+            // Configure build as a UMD library
+            lib: {
+                entry: resolve(__dirname, 'ui/index.js'),
+                name: LIBRARY_NAME,
+                formats: ['umd'],
+                fileName: (format, entryName) => `${LIBRARY_NAME}.${format}.js`
+            },
 
-        // Utilise Node-RED's handling of /resources folder for the build output
-        outDir: './resources',
+            // Utilise Node-RED's handling of /resources folder for the build output
+            outDir: './resources',
 
-        // Declare dependencies that shouldn't be bundled into the library
-        rollupOptions: {
-            // Don't rollup the Vue dependency into the build
-            external: ['vue', 'vuex'],
-            output: {
-                // Provide global variables to use in the UMD build
-                globals: {
-                    vue: 'Vue',
-                    vuex: 'vuex'
+            // Declare dependencies that shouldn't be bundled into the library
+            rollupOptions: {
+                // Don't rollup the Vue dependency into the build
+                external: ['vue', 'vuex'],
+                output: {
+                    // Provide global variables to use in the UMD build
+                    globals: {
+                        vue: 'Vue',
+                        vuex: 'vuex'
+                    }
                 }
             }
         }

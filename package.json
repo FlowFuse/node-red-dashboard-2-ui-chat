@@ -32,8 +32,8 @@
     ],
     "scripts": {
         "build": "vite build",
-        "build:dev": "NODE_ENV=development vite build",
-        "dev": "NODE_ENV=development vite build --watch",
+        "build:dev": "vite build --mode development",
+        "dev": "vite build --mode development --watch",
         "dev:prod": "vite build --watch",
         "lint": "npm run lint:js",
         "lint:fix": "npm run lint:js:fix",
