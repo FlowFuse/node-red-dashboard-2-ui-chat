@@ -2,7 +2,13 @@
     "ui-chat" : {
         "label": {
             "size": "Size",
-            "showAuthor": "Show Author"
+            "showAuthor": "Show Author",
+            "class": "Class",
+            "classNamePlaceholder": "Optional CSS class name(s)",
+            "inputPlaceholder": "Placeholder"
+        },
+        "default": {
+            "inputPlaceholder": "Type a message..."
         }
     }
 }
