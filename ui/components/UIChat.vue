@@ -11,7 +11,7 @@
                 <div v-if="props.showAuthor && !message.sent" class="nrdb-ui-message-author">
                     {{ message.author }}
                 </div>
-                <div class="nrdb-ui-message-content" v-html="renderMarkdown(message.text)"/>
+                <div class="nrdb-ui-message-content" v-html="renderMarkdown(message.text)" />
                 <div class="nrdb-ui-message-time">
                     {{ message.time }}
                 </div>
@@ -114,12 +114,39 @@ export default {
             } else if (msg?.payload) {
                 // Handle incoming messages from Node-RED
                 this.typing = false
-                this.messages.push({
-                    author: msg.topic,
-                    text: msg.payload,
-                    time: new Date().toLocaleTimeString(),
-                    sent: false
-                })
+
+                // Check if payload is an array of messages or a single message
+                if (Array.isArray(msg.payload)) {
+                    // Handle array of messages
+                    const newMessages = msg.payload.map(messageData => {
+                        // Support both object format and simple string format
+                        if (typeof messageData === 'string') {
+                            return {
+                                author: msg.topic || 'system',
+                                text: messageData,
+                                time: new Date().toLocaleTimeString(),
+                                sent: false
+                            }
+                        } else {
+                            // Handle object format with text field only
+                            return {
+                                author: messageData.author || msg.topic || 'system',
+                                text: messageData.text || '',
+                                time: messageData.time || (messageData.timestamp ? new Date(messageData.timestamp).toLocaleTimeString() : new Date().toLocaleTimeString()),
+                                sent: messageData.sent !== undefined ? messageData.sent : false
+                            }
+                        }
+                    })
+                    this.messages.push(...newMessages)
+                } else {
+                    // Handle single message (existing behavior)
+                    this.messages.push({
+                        author: msg.topic,
+                        text: msg.payload,
+                        time: msg.time || (msg.timestamp ? new Date(msg.timestamp).toLocaleTimeString() : new Date().toLocaleTimeString()),
+                        sent: msg.sent !== undefined ? msg.sent : false
+                    })
+                }
             }
             this.$nextTick(() => {
                 this.scrollToBottom()
